@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const _seed = Color(0xFF6D28D9); // deep purple
-  static const _bg = Color(0xFF070A12);   // near black navy
+  static const _seed = Color(0xFF6D28D9);
+  static const _bg = Color(0xFF070A12);
 
   static ThemeData theme() {
     final scheme = ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.dark);
@@ -16,7 +16,8 @@ class AppTheme {
         elevation: 0,
         centerTitle: false,
       ),
-      cardTheme: CardTheme(
+      // ★ここが CardThemeData
+      cardTheme: CardThemeData(
         color: Colors.white.withOpacity(0.06),
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),

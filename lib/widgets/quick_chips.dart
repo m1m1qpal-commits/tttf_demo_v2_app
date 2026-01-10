@@ -11,12 +11,12 @@ class QuickChips extends StatelessWidget {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: chips.map((c) {
-        return ActionChip(
-          label: Text(c),
-          onPressed: () => onTap(c),
-        );
-      }).toList(),
+      children: chips
+          .map((c) => ActionChip(
+                label: Text(c),
+                onPressed: () => onTap(c),
+              ))
+          .toList(),
     );
   }
 }
