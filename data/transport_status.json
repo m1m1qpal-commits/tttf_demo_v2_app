@@ -1,0 +1,17 @@
+{
+  "bicycle_rental": {
+    "status": "available",
+    "last_updated": "2026-01-10",
+    "notes": "現在レンタル可能。台数は日によって変動します。"
+  },
+  "bus": {
+    "status": "operating",
+    "last_updated": "2026-01-10",
+    "notes": "通常運行中。天候により変更される場合があります。"
+  },
+  "ferry": {
+    "status": "operating",
+    "last_updated": "2026-01-10",
+    "notes": "通常運航中。最新情報は公式で確認してください。"
+  }
+}
