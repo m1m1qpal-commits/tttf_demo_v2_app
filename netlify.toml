@@ -1,5 +1,8 @@
+
+
 [build]
   publish = "build/web"
 
 [functions]
   directory = "netlify/functions"
+  included_files = ["data/*.csv"]
