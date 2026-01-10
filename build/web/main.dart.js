@@ -24996,7 +24996,7 @@ if(c===r-q)return q
 r=B.c.j7(a,b,r+1)}return null},
 Fh(a,b,c){var s=0,r=A.Q(t.N),q,p,o,n,m
 var $async$Fh=A.R(function(d,e){if(d===1)return A.N(e,r)
-for(;;)switch(s){case 0:p=A.hh("/api/ai_chat")
+for(;;)switch(s){case 0:p=A.hh("/.netlify/functions/ai_chat")
 o=t.N
 n=A.af(["Content-Type","application/json"],o,o)
 s=3
