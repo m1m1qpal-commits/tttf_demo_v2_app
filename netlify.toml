@@ -1,6 +1,4 @@
-[build]
-  publish = "build/web"
-
-[functions]
-  directory = "netlify/functions"
-  included_files = ["data/*.csv", "data/*.json"]
+[[redirects]]
+  from = "/api/ai_chat"
+  to = "/.netlify/functions/ai_chat"
+  status = 200
