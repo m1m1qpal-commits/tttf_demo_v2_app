@@ -52,7 +52,12 @@ function loadData() {
   };
 }
 
-async function callOpenAI({ apiKey, messages }) {
+async function callOpenAI({ messages }) {
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+  throw new Error("API_KEY is not set in environment variables");
+}
+
   // Responses API（Chat CompletionsでもOK）
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -145,7 +150,7 @@ exports.handler = async (event) => {
       { role: "user", content: message },
     ];
 
-    const reply = await callOpenAI({ apiKey, messages });
+    const reply = await callOpenAI({ messages });
 
     return {
       statusCode: 200,
