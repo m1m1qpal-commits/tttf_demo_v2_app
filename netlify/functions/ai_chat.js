@@ -53,12 +53,16 @@ function loadData() {
 }
 
 async function callOpenAI({ messages }) {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-  throw new Error("API_KEY is not set in environment variables");
-}
+  // ★キー名はOPENAI_API_KEYに統一（Netlify側もこれに合わせる）
+  const apiKey = process.env.OPENAI_API_KEY;
 
-  // Responses API（Chat CompletionsでもOK）
+  if (!apiKey) {
+    console.error("❌ OPENAI_API_KEY is missing");
+    throw new Error("OPENAI_API_KEY is not set in environment variables");
+  }
+
+  console.log("✅ OPENAI_API_KEY exists (length):", apiKey.length);
+
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -72,13 +76,20 @@ async function callOpenAI({ messages }) {
     }),
   });
 
+  console.log("📡 OpenAI status:", res.status);
+
+  const text = await res.text();
+  console.log("📡 OpenAI raw response:", text);
+
   if (!res.ok) {
-    const t = await res.text();
-    throw new Error(`OpenAI error: ${res.status} ${t}`);
+    throw new Error(`OpenAI error ${res.status}: ${text}`);
   }
-  const json = await res.json();
+
+  const json = JSON.parse(text);
   return json.choices?.[0]?.message?.content ?? "";
 }
+
+
 
 function buildSystemPromptIsland(uiState) {
   const policy = uiState?.policy ?? {};
@@ -109,10 +120,6 @@ function buildSystemPromptKids(uiState) {
 
 exports.handler = async (event) => {
   try {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-      return { statusCode: 500, body: JSON.stringify({ reply: "OPENAI_API_KEY が未設定です（Netlify環境変数）。" }) };
-    }
 
     const body = JSON.parse(event.body || "{}");
     const bot = body.bot; // island / kids
