@@ -36,8 +36,8 @@ function topK(rows, q, k = 6) {
 }
 
 function loadData() {
-  const root = process.cwd();
-  const dataDir = path.join(root, "data");
+  const dataDir = path.join(__dirname, "data");
+
 
   const spotsCsv = fs.readFileSync(path.join(dataDir, "island_spots.csv"), "utf8");
   const eventsCsv = fs.readFileSync(path.join(dataDir, "events.csv"), "utf8");
