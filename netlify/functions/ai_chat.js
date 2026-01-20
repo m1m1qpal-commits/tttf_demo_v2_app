@@ -52,16 +52,16 @@ function loadData() {
   };
 }
 
-async function callOpenAI({ messages }) {
-  // ★キー名はOPENAI_API_KEYに統一（Netlify側もこれに合わせる）
-  const apiKey = process.env.OPENAI_API_KEY;
+async function callOpenAIDESU({ messages }) {
+  // ★キー名はOpenAIDESU_API_KEYに統一（Netlify側もこれに合わせる）
+  const apiKey = process.env.OpenAIDESU_API_KEY;
 
   if (!apiKey) {
-    console.error("❌ OPENAI_API_KEY is missing");
-    throw new Error("OPENAI_API_KEY is not set in environment variables");
+    console.error("❌ OpenAIDESU_API_KEY is missing");
+    throw new Error("OpenAIDESU_API_KEY is not set in environment variables");
   }
 
-  console.log("✅ OPENAI_API_KEY exists (length):", apiKey.length);
+  console.log("✅ OpenAIDESU_API_KEY exists (length):", apiKey.length);
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
